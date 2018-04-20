@@ -1,7 +1,13 @@
-"use strict";
+"use strict"
 
-browser.runtime.onMessage.addListener(request => {
-  console.log("Message from the background script:");
-  console.log(request.greeting);
-  return Promise.resolve({response: "Hi from content script"});
-});
+const container = document.createElement('div');
+const close = document.createElement('a');
+const builder = new ContentBuilder();
+
+builder
+  .containerElement(container)
+  .closeElement(close)
+  .tag('h1')
+  .separator(" ");
+
+const contentHandler = builder.build();

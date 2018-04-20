@@ -15,15 +15,17 @@
     "matches": ["<all_urls>"],
     "js": [
       "node_modules/webextension-polyfill/dist/browser-polyfill.js",
+      "content_script/ContentHandler.js",
+      "content_script/ContentBuilder.js",
       "content_script/content.js"
     ],
     "css": ["resources/assets/stylesheets/styles.css"]
   }],
 
   "background": {
-    "matches": [":///*"],
     "scripts": [
       "node_modules/webextension-polyfill/dist/browser-polyfill.js",
+      "background/WordFetcher.js",
       "background/background.js"
     ]
   },
