@@ -8,7 +8,7 @@
   },
 
   "permissions": [
-    "<all_urls>", "activeTab", "contextMenus", "webRequest", "webRequestBlocking"
+    "<all_urls>", "activeTab", "contextMenus", "debugger", "webRequest", "webRequestBlocking"
   ],
 
   "content_scripts": [{
@@ -16,8 +16,7 @@
     "js": [
       "node_modules/webextension-polyfill/dist/browser-polyfill.js",
       "content_script/ContentHandler.js",
-      "content_script/ContentBuilder.js",
-      "content_script/content.js"
+      "content_script/ContentHandlerBuilder.js"
     ],
     "css": ["resources/assets/stylesheets/styles.css"]
   }],

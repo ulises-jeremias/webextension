@@ -1,13 +1,17 @@
 "use strict"
 
-const container = document.createElement('div');
-const close = document.createElement('a');
-const builder = new ContentBuilder();
+var container = document.createElement('div');
+var close = document.createElement('a');
+var builder = new ContentHandlerBuilder();
 
 builder
-  .containerElement(container)
-  .closeElement(close)
-  .tag('h1')
-  .separator(" ");
+  .setContainerElement(container)
+  .setCloseElement(close)
+  .setTag('h1')
+  .setSeparator(" ");
 
-const contentHandler = builder.build();
+var contentHandler = builder.build();
+
+console.log(container.id);
+console.log(container.className);
+console.log(close.id);
