@@ -1,7 +1,11 @@
 "use strict"
 
-browser.browserAction.onClicked.addListener(tab => {
-  browser.tabs.executeScript(tab.id, {
+const url = 'https://www.diarioregistrado.com';
+const path = '/buscar'
+const param = 'q';
+
+browser.browserAction.onClicked.addListener(async tab => {
+  await browser.tabs.executeScript(tab.id, {
     file: "/content_script/content.js",
   }).then(() => {
     console.log("Success!");
@@ -10,7 +14,18 @@ browser.browserAction.onClicked.addListener(tab => {
   });
 });
 
-browser.runtime.onMessage.addListener(function(message, sender, sendResponse) {
+browser.runtime.onMessage.addListener(async function(message, sender, sendResponse) {
   console.log("message: ", message);
-  return;
+  const {wordToSearch} = message;
+  const wordFetcher = new WordFetcher({base, path, paramName});
+
+  return await wordFetcher
+    .searchWord(wordToSearch)
+    .then(elements => elements.map(elem => {
+      // should return an object of the form {title: "", link: ""}
+      return elem;
+    }))
+    .catch(error => {
+      Promise.reject(new NetworkError(error.message));
+    });
 });
