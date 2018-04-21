@@ -1,24 +1,56 @@
+/**
+ * @fileoverview The ContentBuilder class is modeled
+ * @author Ulises Jeremias Cornejo Fandos <ulisescf.24@gmail.com>
+ *
+ */
+
+
 "use strict"
 
-class ContentBuilder {
+/**
+ * This class models a builder which allows you to create instances of the
+ * ContentHandler class
+ *
+ */
+
+class ContentHandlerBuilder {
   constructor() {
-    this.container = document.getElementsByTagName('div')[0];
     this.close = document.createElement('span');
-    this.tagName = 'h1';
+    this.container = document.getElementsByTagName('div')[0];
     this.separator = " ";
+    this.tagName = 'h1';
   }
 
-  containerElement(container) {
-    this.container = container;
-  }
-
-  closeElement(htmlElement) {
+  setCloseElement(htmlElement) {
     this.close = htmlElement;
+
+    return this;
   }
 
-  tag(tag) {
-    this.tagName = tag;
+  setContainerElement(container) {
+    this.container = container;
+
+    return this;
   }
+
+  setSeparator(separator) {
+    this.separator = separator;
+
+    return this;
+  }
+
+  setTag(tag) {
+    this.tagName = tag;
+
+    return this;
+  }
+
+
+  /**
+   * Build the resulting instance of the ContentHandler class
+   *
+   * @return {ContentHandler}
+   */
 
   build() {
     const elements = document.getElementsByTagName(this.tagName);
