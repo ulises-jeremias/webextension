@@ -12,10 +12,6 @@ class WordFetcher {
     return parser.parseFromString(html, "text/html");
   }
 
-  retrieveElement(elem) {
-    return {};
-  }
-
   searchWord(word) {
     return fetch(`${this.base}${this.path}?${this.paramName}=${word}`)
     .then(response => {
