@@ -1,5 +1,5 @@
 /**
- * @fileoverview The ContentBuilder class is modeled
+ * @fileoverview The ContentBuilder class definition
  * @author Ulises Jeremias Cornejo Fandos <ulisescf.24@gmail.com>
  *
  */
