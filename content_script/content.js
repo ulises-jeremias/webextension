@@ -12,6 +12,6 @@ builder
 
 var contentHandler = builder.build();
 
-console.log(container.id);
-console.log(container.className);
-console.log(close.id);
+console.log(contentHandler.container.id);
+console.log(contentHandler.container.className);
+console.log(contentHandler.close.id);
