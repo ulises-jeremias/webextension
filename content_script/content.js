@@ -15,3 +15,5 @@ var contentHandler = builder.build();
 console.log(contentHandler.container.id);
 console.log(contentHandler.container.className);
 console.log(contentHandler.close.id);
+console.log(contentHandler.wordsToFetch);
+console.log(contentHandler.wordToFetch());
