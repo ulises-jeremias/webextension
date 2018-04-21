@@ -6,5 +6,5 @@ class ContentHandler {
     this.close = close;
     this.wordsToFetch = wordsToFetch;
     this.separator = separator;
-  }
+  }  
 }
