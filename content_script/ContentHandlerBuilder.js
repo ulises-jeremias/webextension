@@ -10,9 +10,7 @@
 /**
  * This class models a builder which allows you to create instances of the
  * ContentHandler class
- *
  */
-
 class ContentHandlerBuilder {
   constructor() {
     this.close = document.createElement('span');
