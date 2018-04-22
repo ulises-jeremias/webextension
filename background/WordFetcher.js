@@ -50,10 +50,6 @@ class WordFetcher {
       return Promise.reject(new HttpError(`HTTP error: ${response.status}`));
     })
     .then(html => this.parseHtml(html))
-    .then(htmlDOM => {
-      return htmlDOM.getElementsByClassName("gs_rt");
-    })
-    .then(elements => Array.from(elements).map(elem => elem.lastChild))
     .catch(error => {
       Promise.reject(new Error(`NetworkError: ${error.message}`));
     });
