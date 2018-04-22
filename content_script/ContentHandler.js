@@ -1,7 +1,29 @@
+/**
+ * @fileoverwrite The ContentHandler class definition
+ * @author Ulises Jeremias Cornejo Fandos <ulisescf.24@gmail.com>
+ *
+ */
+
+
 "use strict"
 
+/**
+ * In this class the basic handling of DOM elements is modeled
+ *
+ */
 class ContentHandler {
-  constructor(wordsToFetch, container, close, separator) {
+
+  /**
+   * @constructor
+   *
+   * @param {HTMLCollection}, wordToFetch
+   * @param {HTMLElement}, container
+   * @param {HTMLElement}, close
+   * @param {string}, separator
+   *
+   * @return {ContentHandler}
+   */
+  constructor(wordsToFetch, container, close, separator = " ") {
     this.container = container;
     this.close = close;
     this.wordsToFetch = wordsToFetch;
