@@ -9,7 +9,10 @@ class ContentHandler {
   }
 
   appendTitle(titleElement, contentContainer) {
-    const { title, href } = titleElement;
+    const {
+      title,
+      href
+    } = titleElement;
     const a = document.createElement('a');
 
     a.setAttribute("href", href);
@@ -31,7 +34,9 @@ class ContentHandler {
   }
 
   titlesSearch(wordToFetch) {
-    return browser.runtime.sendMessage({wordToFetch: wordToFetch})
+    return browser.runtime.sendMessage({
+        wordToFetch: wordToFetch
+      })
       .then(elements => this.appendTitles(elements))
       .catch(error => {
         return Promise.reject(new Error(error.message));
@@ -39,14 +44,10 @@ class ContentHandler {
   }
 
   wordToFetch() {
-    var fullTextContent = "";
-
-    Array.from(this.wordsToFetch).forEach(elem => {
-      fullTextContent += ` ${elem.textContent}`;
-    });
-
-    return fullTextContent
-              .split(this.separator)
-              .reduce((a, b) => (a.length > b.length) ? a : b);
+    return Array.from(this.wordsToFetch)
+      .map(elem => elem.textContent)
+      .reduce((fullText, eachText) => fullText + eachText)
+      .split(this.separator)
+      .reduce((a, b) => (a.length > b.length) ? a : b);
   }
 }
