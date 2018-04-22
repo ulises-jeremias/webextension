@@ -11,14 +11,7 @@ builder
   .setSeparator(" ");
 
 var contentHandler = builder.build();
-
-console.log(contentHandler.container);
-console.log(contentHandler.container.id);
-console.log(contentHandler.container.className);
-console.log(contentHandler.close.id);
-console.log(contentHandler.wordsToFetch);
-console.log(contentHandler.wordToFetch());
-console.log(contentHandler.titlesSearch(contentHandler.wordToFetch()));
+contentHandler.titlesSearch(contentHandler.wordToFetch());
 
 // Only for testing and debbuging
 document.querySelector("body").appendChild(contentHandler.container);
