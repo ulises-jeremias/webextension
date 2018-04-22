@@ -1,5 +1,5 @@
 /**
- * @fileoverview The ContentBuilder class is modeled
+ * @fileoverview The ContentBuilder class definition
  * @author Ulises Jeremias Cornejo Fandos <ulisescf.24@gmail.com>
  *
  */
@@ -10,9 +10,7 @@
 /**
  * This class models a builder which allows you to create instances of the
  * ContentHandler class
- *
  */
-
 class ContentHandlerBuilder {
   constructor() {
     this.close = document.createElement('span');

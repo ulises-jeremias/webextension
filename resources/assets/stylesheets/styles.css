@@ -17,16 +17,16 @@ body {
 
 .overlay-content {
   position: relative;
-  top: 25%;
+  top: 10%;
   width: 100%;
   text-align: center;
   margin-top: 30px;
 }
 
 .overlay a {
-  padding: 8px;
+  padding: 0.5px;
   text-decoration: none;
-  font-size: 36px;
+  font-size: 14px;
   color: #818181;
   display: block;
   transition: 0.3s;
@@ -48,7 +48,7 @@ body {
     overflow-y: auto;
   }
   .overlay a {
-    font-size: 20px
+    font-size: 12px
   }
   .overlay .closebtn {
     font-size: 40px;

@@ -20,8 +20,8 @@ or, with SSH
 $ git clone git@github.com:ulises-jeremias/webextension.git
 ```
 
-Then, the corresponding dependencies are installed using `npm` by executing the
-following command in the repository directory,
+**Then, the corresponding dependencies are installed using `npm` by executing the
+following command in the repository directory,**
 
 ```bash
 $ npm run install
@@ -33,7 +33,7 @@ or by using `yarn`,
 $ yarn
 ```
 
-An example of the commands to execute would be the following,
+**An example of the commands to execute would be the following,**
 
 ```bash
 $ git clone https://github.com/ulises-jeremias/webextension.git
