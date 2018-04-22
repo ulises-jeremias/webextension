@@ -1,8 +1,8 @@
 "use strict"
 
-const url = 'https://www.diarioregistrado.com';
-const path = '/buscar'
-const param = 'q';
+const base = 'https://scholar.google.com';
+const path = '/scholar'
+const paramName = 'q';
 
 browser.browserAction.onClicked.addListener(async tab => {
   await browser.tabs.executeScript(tab.id, {
@@ -15,17 +15,21 @@ browser.browserAction.onClicked.addListener(async tab => {
 });
 
 browser.runtime.onMessage.addListener(async function(message, sender, sendResponse) {
-  console.log("message: ", message);
-  const {wordToSearch} = message;
+  console.log(message);
+  const {wordToFetch} = message;
   const wordFetcher = new WordFetcher({base, path, paramName});
 
   return await wordFetcher
-    .searchWord(wordToSearch)
-    .then(elements => elements.map(elem => {
-      // should return an object of the form {title: "", link: ""}
-      return elem;
+    .searchWord(wordToFetch)
+    .then(elements => Array.from(elements).map(elem => {
+      // should return an object of the form {title: "", href: ""}
+      console.log(elem);
+      return {
+        title: elem.textContent,
+        href: elem.href
+      };
     }))
     .catch(error => {
-      Promise.reject(new NetworkError(error.message));
+      Promise.reject(new Error(`NetworkError: ${error.message}`));
     });
 });
