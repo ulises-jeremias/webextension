@@ -1,44 +1,75 @@
+/**
+ * @fileoverwrite The ContentHandler class definition
+ * @author Ulises Jeremias Cornejo Fandos <ulisescf.24@gmail.com>
+ *
+ */
+
+
 "use strict"
 
+/**
+ * In this class the basic handling of DOM elements is modeled
+ *
+ */
 class ContentHandler {
-  constructor(wordsToFetch, container, close, separator) {
+
+  /**
+   * @constructor
+   *
+   * @param {HTMLCollection}, wordToFetch
+   * @param {HTMLElement}, container
+   * @param {HTMLElement}, close
+   * @param {string}, separator
+   *
+   * @return {ContentHandler}
+   */
+  constructor(wordsToFetch, container, close, separator = " ") {
     this.container = container;
     this.close = close;
     this.wordsToFetch = wordsToFetch;
     this.separator = separator;
   }
 
+  appendTitle(titleElement, contentContainer) {
+    const {
+      title,
+      href
+    } = titleElement;
+    const a = document.createElement('a');
+
+    a.setAttribute("href", href);
+    a.innerHTML = title;
+
+    contentContainer.appendChild(a);
+  }
+
+  appendTitles(titles) {
+    const container = document.createElement('div');
+    container.setAttribute("class", "overlay-content");
+
+    Array.from(titles).forEach(title => {
+      this.appendTitle(title, container);
+    });
+
+    this.container.appendChild(container);
+    return this.container;
+  }
+
   titlesSearch(wordToFetch) {
-    browser.runtime.sendMessage({wordToFetch: wordToFetch})
-      .then(elements => {
-        console.log(elements);
-        Array.from(elements).forEach(elem => {
-          let { title, href } = elem;
-          let container = document.createElement('div');
-          let a = document.createElement('a');
-
-          a.setAttribute("href", href);
-          a.innerHTML = title;
-
-          container.setAttribute("class", "overlay-content");
-          container.appendChild(a);
-          this.container.appendChild(container);
-        });
+    return browser.runtime.sendMessage({
+        wordToFetch: wordToFetch
       })
+      .then(elements => this.appendTitles(elements))
       .catch(error => {
         return Promise.reject(new Error(error.message));
       });
   }
 
   wordToFetch() {
-    var fullTextContent = "";
-
-    Array.from(this.wordsToFetch).forEach(elem => {
-      fullTextContent += ` ${elem.textContent}`;
-    });
-
-    return fullTextContent
-              .split(this.separator)
-              .reduce((a, b) => (a.length > b.length) ? a : b);
+    return Array.from(this.wordsToFetch)
+      .map(elem => elem.textContent)
+      .reduce((fullText, eachText) => fullText + eachText)
+      .split(this.separator)
+      .reduce((a, b) => (a.length > b.length) ? a : b);
   }
 }
