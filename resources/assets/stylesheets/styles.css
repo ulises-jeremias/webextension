@@ -25,7 +25,7 @@ body {
 
 .overlay a {
   padding: 5px;
-  text-decoration: none;
+  text-decoration: none !important;
   font-size: 14px;
   color: #818181;
   display: block;
