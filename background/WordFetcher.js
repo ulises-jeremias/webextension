@@ -47,11 +47,11 @@ class WordFetcher {
         return response.text();
       }
 
-      return Promise.reject(new HttpError(`HTTP error: ${response.status}`));
+      return Promise.reject(new Error(`HTTP error: ${response.status}`));
     })
     .then(html => this.parseHtml(html))
     .catch(error => {
-      Promise.reject(new Error(`NetworkError: ${error.message}`));
+      return Promise.reject(new Error(`NetworkError: ${error.message}`));
     });
   }
 }
