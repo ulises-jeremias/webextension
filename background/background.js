@@ -14,16 +14,17 @@ browser.browserAction.onClicked.addListener(async tab => {
   });
 });
 
-browser.runtime.onMessage.addListener(async function(message, sender, sendResponse) {
-  console.log(message);
+browser.runtime.onMessage.addListener(async (message, sender, sendResponse) => {
   const {wordToFetch} = message;
   const wordFetcher = new WordFetcher({base, path, paramName});
 
   return await wordFetcher
     .searchWord(wordToFetch)
-    .then(elements => Array.from(elements).map(elem => {
-      // should return an object of the form {title: "", href: ""}
-      console.log(elem);
+    .then(htmlDOM => {
+      return htmlDOM.getElementsByClassName("gs_rt");
+    })
+    .then(elements => Array.from(elements).map(elem => elem.lastChild))
+    .then(elements => elements.map(elem => {
       return {
         title: elem.textContent,
         href: elem.href
