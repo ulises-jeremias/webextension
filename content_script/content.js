@@ -1,7 +1,7 @@
 "use strict"
 
 browser.runtime.onMessage.addListener(async message => {
-  const { tagName } = message;
+  const {tagName} = message;
 
   const container = document.createElement('div');
   const close = document.createElement('a');
@@ -15,8 +15,7 @@ browser.runtime.onMessage.addListener(async message => {
 
   const contentHandler = builder.build();
 
-  contentHandler
-    .titlesSearch(contentHandler.wordToFetch())
+  await contentHandler.titlesSearch(contentHandler.wordToFetch())
     .then(container => {
       document.querySelector("body").appendChild(container);
       container.style.height = "100%";
