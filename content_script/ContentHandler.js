@@ -8,23 +8,31 @@ class ContentHandler {
     this.separator = separator;
   }
 
+  appendTitle(titleElement, contentContainer) {
+    const { title, href } = titleElement;
+    const a = document.createElement('a');
+
+    a.setAttribute("href", href);
+    a.innerHTML = title;
+
+    contentContainer.appendChild(a);
+  }
+
+  appendTitles(titles) {
+    const container = document.createElement('div');
+    container.setAttribute("class", "overlay-content");
+
+    Array.from(titles).forEach(title => {
+      this.appendTitle(title, container);
+    });
+
+    this.container.appendChild(container);
+    return this.container;
+  }
+
   titlesSearch(wordToFetch) {
-    browser.runtime.sendMessage({wordToFetch: wordToFetch})
-      .then(elements => {
-        console.log(elements);
-        Array.from(elements).forEach(elem => {
-          let { title, href } = elem;
-          let container = document.createElement('div');
-          let a = document.createElement('a');
-
-          a.setAttribute("href", href);
-          a.innerHTML = title;
-
-          container.setAttribute("class", "overlay-content");
-          container.appendChild(a);
-          this.container.appendChild(container);
-        });
-      })
+    return browser.runtime.sendMessage({wordToFetch: wordToFetch})
+      .then(elements => this.appendTitles(elements))
       .catch(error => {
         return Promise.reject(new Error(error.message));
       });
