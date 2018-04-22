@@ -9,9 +9,10 @@ class ContentHandler {
   }
 
   titlesSearch(wordToFetch) {
-    browser.runtime.sendMessage({wordToFetch})
+    browser.runtime.sendMessage({wordToFetch: wordToFetch})
       .then(elements => {
-        elements.forEach(elem => {
+        console.log(elements);
+        Array.from(elements).forEach(elem => {
           let { title, href } = elem;
           let container = document.createElement('div');
           let a = document.createElement('a');
