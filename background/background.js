@@ -5,13 +5,7 @@ const path = '/scholar'
 const paramName = 'q';
 
 browser.browserAction.onClicked.addListener(async tab => {
-  await browser.tabs.executeScript(tab.id, {file: "/content_script/content.js"})
-  .then(() => {
-    browser.tabs.sendMessage(tab.id, {tagName: 'h1'});
-  })
-  .catch(error => {
-    console.error(`Error: ${error}`);
-  });
+  await browser.tabs.sendMessage(tab.id, {tagName: 'h1'});
 });
 
 browser.runtime.onMessage.addListener(async message => {
