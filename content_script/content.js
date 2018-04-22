@@ -11,8 +11,12 @@ builder
   .setSeparator(" ");
 
 var contentHandler = builder.build();
-contentHandler.titlesSearch(contentHandler.wordToFetch());
-
-// Only for testing and debbuging
-document.querySelector("body").appendChild(contentHandler.container);
-contentHandler.container.style.height = "100%";
+contentHandler
+  .titlesSearch(contentHandler.wordToFetch())
+  .then(container => {
+    document.querySelector("body").appendChild(container);
+    container.style.height = "100%";
+  })
+  .catch(error => {
+    return Promise.reject(new Error(error.message));
+  });
