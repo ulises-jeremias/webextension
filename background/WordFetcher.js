@@ -54,4 +54,28 @@ class WordFetcher {
       return Promise.reject(new Error(`NetworkError: ${error.message}`));
     });
   }
+
+
+  /**
+   * This method returns the titles related to a given word
+   *
+   * @param {string} wordToFetch
+   * @return {Promise}, returns the title elements resolved as a Promise
+   */
+  searchTitlesForWord(wordToFetch) {
+    return this.searchWord(wordToFetch)
+      .then(htmlDOM => {
+        return htmlDOM.getElementsByClassName("gs_rt");
+      })
+      .then(elements => Array.from(elements).map(elem => elem.lastChild))
+      .then(elements => elements.map(elem => {
+        return {
+          title: elem.textContent,
+          href: elem.href
+        };
+      }))
+      .catch(error => {
+        Promise.reject(new Error(`NetworkError: ${error.message}`));
+      });
+  }
 }
