@@ -4,7 +4,6 @@
  *
  */
 
-
 "use strict"
 
 /**
@@ -13,19 +12,12 @@
  */
 class ContentHandlerBuilder {
   constructor() {
-    this.close = document.createElement('span');
-    this.container = document.getElementsByTagName('div')[0];
+    this.container = 'div';
     this.separator = " ";
     this.tagName = 'h1';
   }
 
-  setCloseElement(htmlElement) {
-    this.close = htmlElement;
-
-    return this;
-  }
-
-  setContainerElement(container) {
+  setContainer(container) {
     this.container = container;
 
     return this;
@@ -43,7 +35,6 @@ class ContentHandlerBuilder {
     return this;
   }
 
-
   /**
    * Build the resulting instance of the ContentHandler class
    *
@@ -52,22 +43,11 @@ class ContentHandlerBuilder {
 
   build() {
     const elements = document.getElementsByTagName(this.tagName);
-    const container = this.container;
-    const close = this.close;
+    const container = document.getElementById('popup_search') || document.createElement(this.container);
 
     container.setAttribute("id", "popup_search");
     container.setAttribute("class", "overlay");
 
-    close.setAttribute("id", "popup_close");
-    close.setAttribute("class", "closebtn");
-    close.addEventListener("click", function() {
-      document.getElementById("popup_search").style.height = "0%";
-    });
-
-    close.innerHTML = "&times;";
-
-    container.appendChild(close);
-
-    return new ContentHandler(elements, container, close, this.separator);
+    return new ContentHandler(elements, container, this.separator);
   }
 }
