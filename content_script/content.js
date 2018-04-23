@@ -2,24 +2,16 @@
 
 browser.runtime.onMessage.addListener(async message => {
   const {tagName} = message;
-
-  const container = document.createElement('div');
-  const close = document.createElement('a');
   const builder = new ContentHandlerBuilder();
 
   builder
-    .setContainerElement(container)
-    .setCloseElement(close)
+    .setContainer('div')
     .setTag(tagName)
     .setSeparator(" ");
 
   const contentHandler = builder.build();
 
-  await contentHandler.titlesSearch(contentHandler.wordToFetch())
-    .then(container => {
-      document.querySelector("body").appendChild(container);
-      container.style.height = "100%";
-    })
+  await contentHandler.handle(document.querySelector('body'))
     .catch(error => {
       return Promise.reject(new Error(error.message));
     });
