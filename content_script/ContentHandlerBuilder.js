@@ -4,7 +4,6 @@
  *
  */
 
-
 "use strict"
 
 /**
@@ -36,7 +35,6 @@ class ContentHandlerBuilder {
     return this;
   }
 
-
   /**
    * Build the resulting instance of the ContentHandler class
    *
@@ -45,7 +43,7 @@ class ContentHandlerBuilder {
 
   build() {
     const elements = document.getElementsByTagName(this.tagName);
-    const container = document.createElement(this.container);
+    const container = document.getElementById('popup_search') || document.createElement(this.container);
 
     container.setAttribute("id", "popup_search");
     container.setAttribute("class", "overlay");

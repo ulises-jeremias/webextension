@@ -24,6 +24,7 @@ class ContentHandler {
    */
   constructor(wordsToFetch, container, separator = " ") {
     this.container = container;
+    this.containerId = container.id;
     this.wordsToFetch = wordsToFetch;
     this.separator = separator;
   }
@@ -55,14 +56,18 @@ class ContentHandler {
   }
 
   appendTitles(titles) {
-    const container = document.createElement('div');
+    const container = document.getElementById('panel_content') || document.createElement('div');
+
+    container.innerHTML = "";
     container.setAttribute("class", "overlay-content");
+    container.setAttribute("id", "panel_content");
 
     Array.from(titles).forEach(title => {
       this.appendTitle(title, container);
     });
 
     this.container.appendChild(container);
+
     return this.container;
   }
 
@@ -96,5 +101,9 @@ class ContentHandler {
       .catch(error => {
         return Promise.reject(new Error(error.message));
       });
+  }
+
+  reset() {
+    this.container.remove();
   }
 }
