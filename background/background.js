@@ -10,9 +10,11 @@ browser.browserAction.onClicked.addListener(async tab => {
   await browser.tabs.sendMessage(tab.id, {
     running: running,
     tagName: 'h1',
+  }).then(() => {
+    running = !running;
+  }).catch(error => {
+    Promise.reject(new Error(`NetworkError: ${error.message}`));
   });
-
-  running = !running;
 });
 
 browser.runtime.onMessage.addListener(async message => {
