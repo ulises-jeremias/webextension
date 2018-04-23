@@ -38,7 +38,7 @@ class WordFetcher {
    * This method returns the result of searching for a word on a given page
    *
    * @param {string} word
-   * @return {Promise}
+   * @return {Promise}, returns the parsed html resolved as a Promise
    */
   searchWord(word) {
     return fetch(`${this.base}${this.path}?${this.paramName}=${word}`)
