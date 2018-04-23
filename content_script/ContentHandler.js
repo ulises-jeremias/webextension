@@ -62,6 +62,7 @@ class ContentHandler {
 
     contentElement.setAttribute("class", "overlay-content");
     contentElement.setAttribute("id", "panel_content");
+    $(contentElement).draggable().resizable();
 
     Array.from(titles).forEach(title => {
       this.appendTitle(title, contentElement);

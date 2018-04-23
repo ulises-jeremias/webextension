@@ -15,11 +15,16 @@
     "matches": ["<all_urls>"],
     "js": [
       "node_modules/webextension-polyfill/dist/browser-polyfill.js",
+      "node_modules/jquery/dist/jquery.min.js",
+      "node_modules/jquery-ui-dist/jquery-ui.min.js",
       "content_script/ContentHandler.js",
       "content_script/ContentHandlerBuilder.js",
       "content_script/content.js"
     ],
-    "css": ["resources/assets/stylesheets/styles.css"]
+    "css": [
+      "node_modules/jquery-ui-dist/jquery-ui.min.css",
+      "resources/assets/stylesheets/styles.css"
+    ]
   }],
 
   "background": {
