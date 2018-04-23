@@ -18,14 +18,12 @@ class ContentHandler {
    *
    * @param {HTMLCollection}, wordToFetch
    * @param {HTMLElement}, container
-   * @param {HTMLElement}, close
    * @param {string}, separator
    *
    * @return {ContentHandler}
    */
-  constructor(wordsToFetch, container, close, separator = " ") {
+  constructor(wordsToFetch, container, separator = " ") {
     this.container = container;
-    this.close = close;
     this.wordsToFetch = wordsToFetch;
     this.separator = separator;
   }
@@ -41,6 +39,19 @@ class ContentHandler {
     a.innerHTML = title;
 
     contentContainer.appendChild(a);
+  }
+
+  appendCloseElement(close) {
+    close.setAttribute("id", "popup_close");
+    close.setAttribute("class", "closebtn");
+    close.addEventListener("click", function() {
+      document.getElementById("popup_search").style.height = "0%";
+    });
+
+    close.innerHTML = "&times;";
+
+    this.container.appendChild(close);
+    return this.container;
   }
 
   appendTitles(titles) {
@@ -71,5 +82,19 @@ class ContentHandler {
       .reduce((fullText, eachText) => fullText + eachText)
       .split(this.separator)
       .reduce((a, b) => (a.length > b.length) ? a : b);
+  }
+
+  handle(container) {
+    return this.titlesSearch(this.wordToFetch())
+      .then(() => {
+        return this.appendCloseElement(document.createElement('a'))
+      })
+      .then(panel => {
+        container.appendChild(panel);
+        panel.style.height = "100%";
+      })
+      .catch(error => {
+        return Promise.reject(new Error(error.message));
+      });
   }
 }
