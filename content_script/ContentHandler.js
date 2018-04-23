@@ -27,6 +27,8 @@ class ContentHandler {
     this.containerId = container.id;
     this.wordsToFetch = wordsToFetch;
     this.separator = separator;
+
+    this.contentElement = document.getElementById('panel_content') || document.createElement('div');
   }
 
   appendTitle(titleElement, contentContainer) {
@@ -51,22 +53,21 @@ class ContentHandler {
 
     close.innerHTML = "&times;";
 
-    this.container.appendChild(close);
+    this.contentElement.appendChild(close);
     return this.container;
   }
 
   appendTitles(titles) {
-    const container = document.getElementById('panel_content') || document.createElement('div');
+    const contentElement = this.contentElement;
 
-    container.innerHTML = "";
-    container.setAttribute("class", "overlay-content");
-    container.setAttribute("id", "panel_content");
+    contentElement.setAttribute("class", "overlay-content");
+    contentElement.setAttribute("id", "panel_content");
 
     Array.from(titles).forEach(title => {
-      this.appendTitle(title, container);
+      this.appendTitle(title, contentElement);
     });
 
-    this.container.appendChild(container);
+    this.container.appendChild(contentElement);
 
     return this.container;
   }
@@ -90,10 +91,10 @@ class ContentHandler {
   }
 
   handle(container) {
+    this.contentElement.innerHTML = "";
+    this.appendCloseElement(document.createElement('a'));
+
     return this.titlesSearch(this.wordToFetch())
-      .then(() => {
-        return this.appendCloseElement(document.createElement('a'))
-      })
       .then(panel => {
         container.appendChild(panel);
         panel.style.height = "100%";
