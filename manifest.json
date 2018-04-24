@@ -17,8 +17,9 @@
       "node_modules/webextension-polyfill/dist/browser-polyfill.js",
       "node_modules/jquery/dist/jquery.min.js",
       "node_modules/jquery-ui-dist/jquery-ui.min.js",
-      "content_script/ContentHandler.js",
-      "content_script/ContentHandlerBuilder.js",
+      "content_script/PanelComponent.js",
+      "content_script/PanelBuilder.js",
+      "content_script/ContentManager.js",
       "content_script/content.js"
     ],
     "css": [
@@ -31,6 +32,10 @@
     "scripts": [
       "node_modules/webextension-polyfill/dist/browser-polyfill.js",
       "background/WordFetcher.js",
+      "background/BackgroundState.js",
+      "background/states/RunningState.js",
+      "background/states/StoppedState.js",
+      "background/BackgroundManager.js",
       "background/background.js"
     ]
   },

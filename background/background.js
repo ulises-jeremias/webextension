@@ -1,28 +1,23 @@
 "use strict"
 
-const base = 'https://scholar.google.com';
-const path = '/scholar'
-const paramName = 'q';
+const backgroundManager = new BackgroundManager({
+  base: 'https://scholar.google.com',
+  path: '/scholar',
+  paramName: 'q',
+  tagName: 'h1',
+});
 
-let running = false;
+backgroundManager.setCurrentState(backgroundManager.getStates().stopped);
 
 browser.browserAction.onClicked.addListener(async tab => {
-  await browser.tabs.sendMessage(tab.id, {
-    running: running,
-    tagName: 'h1',
-  }).then(() => {
-    running = !running;
-  }).catch(error => {
-    Promise.reject(new Error(`NetworkError: ${error.message}`));
-  });
+  return await backgroundManager.sendMessage(tab)
+    .catch(error => {
+      Promise.reject(new Error(`NetworkError: ${error.message}`));
+    });
 });
 
 browser.runtime.onMessage.addListener(async message => {
-  const { wordToFetch } = message;
-  const wordFetcher = new WordFetcher({ base, path, paramName });
-
-  return await wordFetcher
-    .searchTitlesForWord(wordToFetch)
+  return await backgroundManager.handleMessage(message)
     .catch(error => {
       Promise.reject(new Error(`NetworkError: ${error.message}`));
     });

@@ -4,13 +4,14 @@
  *
  */
 
+
 "use strict"
 
 /**
  * This class models a builder which allows you to create instances of the
- * ContentHandler class
+ * PanelComponent class
  */
-class ContentHandlerBuilder {
+class PanelBuilder {
   constructor() {
     this.container = 'div';
     this.separator = " ";
@@ -36,11 +37,10 @@ class ContentHandlerBuilder {
   }
 
   /**
-   * Build the resulting instance of the ContentHandler class
+   * Build the resulting instance of the PanelComponent class
    *
-   * @return {ContentHandler}
+   * @return {PanelComponent}
    */
-
   build() {
     const elements = document.getElementsByTagName(this.tagName);
     const container = document.getElementById('popup_search') || document.createElement(this.container);
@@ -48,6 +48,6 @@ class ContentHandlerBuilder {
     container.setAttribute("id", "popup_search");
     container.setAttribute("class", "overlay");
 
-    return new ContentHandler(elements, container, this.separator);
+    return new PanelComponent(elements, container, this.separator);
   }
 }
