@@ -20,15 +20,15 @@ class ContentManager {
       .setTag(tagName)
       .setSeparator(" ");
 
-    this._panelComponent = builder.build();
+    this._panelContainer = builder.build();
   }
 
   reset() {
-    this._panelComponent.remove();
+    this._panelContainer.remove();
   }
 
   run() {
-    return this._panelComponent
+    return this._panelContainer
       .render(document.querySelector('body'))
       .catch(error => {
         return Promise.reject(new Error(`NetworkError: ${error.message}`));

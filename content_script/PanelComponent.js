@@ -1,5 +1,5 @@
 /**
- * @fileoverwrite The ContentHandler class definition
+ * @fileoverwrite The PanelComponent class definition
  * @author Ulises Jeremias Cornejo Fandos <ulisescf.24@gmail.com>
  *
  */
@@ -8,10 +8,10 @@
 "use strict"
 
 /**
- * In this class the basic handling of DOM elements is modeled
+ *
  *
  */
-class ContentHandler {
+class PanelComponent {
 
   /**
    * @constructor
@@ -20,7 +20,7 @@ class ContentHandler {
    * @param {HTMLElement}, container
    * @param {string}, separator
    *
-   * @return {ContentHandler}
+   * @return {PanelComponent}
    */
   constructor(wordsToFetch, container, separator = " ") {
     this.container = container;
@@ -91,9 +91,11 @@ class ContentHandler {
       .reduce((a, b) => (a.length > b.length) ? a : b);
   }
 
-  run() {
-    const container = document.querySelector('body');
+  remove() {
+    this.container.remove();
+  }
 
+  render(container) {
     this.contentElement.innerHTML = "";
     this.appendCloseElement(document.createElement('a'));
 
@@ -105,9 +107,5 @@ class ContentHandler {
       .catch(error => {
         return Promise.reject(new Error(error.message));
       });
-  }
-
-  reset() {
-    this.container.remove();
   }
 }
