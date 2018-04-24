@@ -91,7 +91,9 @@ class ContentHandler {
       .reduce((a, b) => (a.length > b.length) ? a : b);
   }
 
-  handle(container) {
+  run() {
+    const container = document.querySelector('body');
+
     this.contentElement.innerHTML = "";
     this.appendCloseElement(document.createElement('a'));
 

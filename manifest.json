@@ -31,6 +31,10 @@
     "scripts": [
       "node_modules/webextension-polyfill/dist/browser-polyfill.js",
       "background/WordFetcher.js",
+      "background/BackgroundState.js",
+      "background/states/RunningState.js",
+      "background/states/StoppedState.js",
+      "background/BackgroundManager.js",
       "background/background.js"
     ]
   },
