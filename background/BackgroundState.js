@@ -1,3 +1,13 @@
+/**
+ * @fileoverview The BackgroundState class is defined
+ * @author Ulises Jeremias Cornejo Fandos <ulisescf.24@gmail.com>
+ *
+ */
+
+/**
+ * 
+ *
+ */
 class BackgroundState {
   constructor({command = ""}) {
     this.command = command;
