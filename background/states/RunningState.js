@@ -1,3 +1,9 @@
+/**
+ * @fileoverview The RunningState class is defined
+ * @author Ulises Jeremias Cornejo Fandos <ulisescf.24@gmail.com>
+ *
+ */
+
 class RunningState extends BackgroundState {
   constructor() {
     super({command: "reset"});
@@ -8,6 +14,10 @@ class RunningState extends BackgroundState {
     return this;
   }
 
+  /**
+   * @param {string} wordToFetch
+   * @return {Promise}
+   */
   handleMessage({wordToFetch}) {
     return this._wordFetcher.searchTitlesForWord(wordToFetch);
   }

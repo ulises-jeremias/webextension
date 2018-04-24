@@ -41,7 +41,6 @@ class PanelBuilder {
    *
    * @return {PanelComponent}
    */
-
   build() {
     const elements = document.getElementsByTagName(this.tagName);
     const container = document.getElementById('popup_search') || document.createElement(this.container);

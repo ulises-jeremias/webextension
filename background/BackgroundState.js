@@ -4,10 +4,7 @@
  *
  */
 
-/**
- * 
- *
- */
+
 class BackgroundState {
   constructor({command = ""}) {
     this.command = command;
@@ -24,5 +21,9 @@ class BackgroundState {
 
   next() {}
 
+  /**
+   * @param {string} wordToFetch
+   * @return {Promise}
+   */
   handleMessage({wordToFetch}) {}
 }
