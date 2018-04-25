@@ -86,7 +86,7 @@ class PanelComponent {
   wordToFetch() {
     return Array.from(this.wordsToFetch)
       .map(elem => elem.textContent)
-      .reduce((fullText, eachText) => fullText + eachText)
+      .reduce((fullText, eachText) => fullText + eachText, "")
       .split(this.separator)
       .reduce((a, b) => (a.length > b.length) ? a : b);
   }
