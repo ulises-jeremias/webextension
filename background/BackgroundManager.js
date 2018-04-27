@@ -20,12 +20,12 @@ class BackgroundManager {
    * @param {string} path
    * @param {string} paramName
    * @param {string} tagName
+   * @param {BackgroundState} initialState
    *
    * @return {BackgroundManager}
    */
-  constructor({base, path, paramName, tagName}) {
+  constructor({base, path, paramName, tagName, initialState}) {
     this._wordFetcher = new WordFetcher({base, path, paramName});
-    this._currentState = null;
 
     this._config = {
       base,
@@ -38,10 +38,14 @@ class BackgroundManager {
       running: new RunningState(),
       stopped: new StoppedState()
     };
+
+    this.setCurrentState(this._states[initialState] || this._states.stopped);
   }
 
   getConfig() {
-    return {...this._config};
+    return {
+      ...this._config
+    };
   }
 
   /**
@@ -50,7 +54,11 @@ class BackgroundManager {
    * @param {BackgroundState}
    */
   setCurrentState(newState) {
-    this._currentState = Object.values(this._states).find(state => state === newState);
+    const newCurrentState = Object.values(this._states).find(state => {
+      return state === newState;
+    });
+    
+    this._currentState = newCurrentState || this._states.stopped;
   }
 
   getCurrentState() {
@@ -58,7 +66,9 @@ class BackgroundManager {
   }
 
   getStates() {
-    return {...this._states};
+    return {
+      ...this._states
+    };
   }
 
   sendMessage(tab) {
