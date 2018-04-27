@@ -2,5 +2,5 @@
 
 browser.runtime.onMessage.addListener(async message => {
   const contentManager = new ContentManager(message);
-  await contentManager[message.command]();
+  contentManager[message.command]();
 });
