@@ -57,7 +57,7 @@ class BackgroundManager {
     const newCurrentState = Object.values(this._states).find(state => {
       return state === newState;
     });
-    
+
     this._currentState = newCurrentState || this._states.stopped;
   }
 

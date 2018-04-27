@@ -3,5 +3,6 @@
 const contentManager = new ContentManager();
 
 browser.runtime.onMessage.addListener(async message => {
-  contentManager.buildPanel(message.tagName)[message.command]();
+  message.tagName && contentManager.buildPanel(message.tagName);
+  contentManager[message.command]();
 });
