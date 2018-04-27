@@ -10,13 +10,15 @@ class BackgroundState {
     this.command = command;
   }
 
-  sendMessage(tab) {
-    const command = this._currentState.command;
+  getOptions() {}
 
-    return browser.tabs.sendMessage(tab.id, {
-      command: command,
-      tagName: this.refresh().getConfig().tagName
-    });
+  sendMessage(tab) {
+    const thisState = this.getCurrentState();
+    const options = thisState.getOptions.bind(this)();
+
+    this.refresh();
+
+    return browser.tabs.sendMessage(tab.id, options);
   }
 
   next() {}

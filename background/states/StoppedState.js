@@ -9,6 +9,12 @@ class StoppedState extends BackgroundState {
     super({command: "run"});
   }
 
+  getOptions() {
+    return {
+      command: this.getCurrentState().command,
+    };
+  }
+
   next() {
     this.setCurrentState(this.getStates().running);
     return this;

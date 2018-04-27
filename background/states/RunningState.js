@@ -9,6 +9,13 @@ class RunningState extends BackgroundState {
     super({command: "reset"});
   }
 
+  getOptions() {
+    return {
+      command: this.getCurrentState().command,
+      tagName: this.getConfig().tagName,
+    };
+  }
+
   next() {
     this.setCurrentState(this.getStates().stopped);
     return this;

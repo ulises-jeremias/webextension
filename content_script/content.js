@@ -1,6 +1,8 @@
 "use strict"
 
+const contentManager = new ContentManager();
+
 browser.runtime.onMessage.addListener(async message => {
-  const contentManager = new ContentManager(message);
-  await contentManager[message.command]();
+  message.tagName && contentManager.buildPanel(message.tagName);
+  contentManager[message.command]();
 });

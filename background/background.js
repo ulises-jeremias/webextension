@@ -5,9 +5,8 @@ const backgroundManager = new BackgroundManager({
   path: '/scholar',
   paramName: 'q',
   tagName: 'h1',
+  initialState: 'stopped'
 });
-
-backgroundManager.setCurrentState(backgroundManager.getStates().stopped);
 
 browser.browserAction.onClicked.addListener(async tab => {
   return await backgroundManager.sendMessage(tab)

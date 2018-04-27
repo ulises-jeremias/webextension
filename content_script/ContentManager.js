@@ -12,26 +12,37 @@
  *
  */
 class ContentManager {
-  constructor({tagName}) {
-    const builder = new PanelBuilder();
+  constructor() {
+    this.builder = new PanelBuilder();
 
-    builder
+    this.builder
       .setContainer('div')
-      .setTag(tagName)
       .setSeparator(" ");
+  }
 
-    this._panelContainer = builder.build();
+  getPanelContainer(tagName = 'h1') {
+    this._panelContainer || this.buildPanel(tagName);
+
+    return this._panelContainer;
   }
 
   reset() {
-    this._panelContainer.remove();
+    this.getPanelContainer().remove();
   }
 
   run() {
-    return this._panelContainer
+    return this.getPanelContainer()
       .render(document.querySelector('body'))
       .catch(error => {
         return Promise.reject(new Error(`NetworkError: ${error.message}`));
       });
+  }
+
+  buildPanel(tagName) {
+    tagName && this.builder.setTag(tagName);
+
+    this._panelContainer = this.builder.build();
+
+    return this;
   }
 }
