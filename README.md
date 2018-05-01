@@ -2,7 +2,9 @@
 
 ## Introduction
 
-Web extension developed as training for research project in web augmentation.
+Web extension developed as training proposed by [LIFIA](http://www.lifia.info.unlp.edu.ar) for research project in web increase.
+
+It allows you to find, in [Google Scholar](https://scholar.google.com/), elements related to the longest word found from collecting the text of the `<h1>` elements of the current page. They are arranged in a floating panel and remove it at the end of your search.
 
 ## Using the extension
 
@@ -41,11 +43,11 @@ $ yarn
 
 ### Load Unpacked Extensions
 
-#### Chrome
-
 After performing the steps described above,
 
--   Go to Google Chrome, Navigate to `Settings –> Extensions`.
+#### Google Chrome _(or Chromium)_
+
+-   Go to Google Chrome, Navigate to `Settings –> Extensions`, or open `chrome://extensions`
 -   Here Look for the Option `Developer Mode` and **enable** it
 -   Once you’ve enabled the Developer Mode option it will modify the extensions
     tab and  it will reveal `Load Unpacked Extension` option.
@@ -56,3 +58,9 @@ After performing the steps described above,
 -   That’s it the `webextension` will now be added to Google Chrome.
     Now scroll down in the `Extensions` tab present inside Chrome Settings.
 -   Now simply click on the `Launch` option highlighted to launch the extension.
+
+#### Mozilla Firefox _(or Firefox Nightly)_
+
+-   Open `about:debugging`.
+-   Click the `Load Temorary Add-on` button.
+-   Select any of the files where the `manifest.json` it's located.
