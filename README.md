@@ -1,7 +1,5 @@
 # webextension
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-
 ## Introduction
 
 Web extension developed as training for research project in web augmentation.
