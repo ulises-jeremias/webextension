@@ -93,6 +93,10 @@ or by using `yarn`,
 $ yarn start:nightly
 ```
 
+### Test the extension
+
+To test the operation of the extension, once loaded you can go to a wikipedia article (e.g [C mathematical functions](https://en.wikipedia.org/wiki/C_mathematical_functions)) and press the icon of the loaded extension. By doing this, a floating panel, draggable and resizable, with the contents of the search will be displayed.
+
 ## Source Tree Outline
 
 -   addon/
