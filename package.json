@@ -7,7 +7,8 @@
     "test": "karma start",
     "test:debug": "karma start --no-single-run --auto-watch",
     "prepare-web-ext": "pushd addon && yarn && popd",
-    "start": "web-ext run -s addon"
+    "start": "web-ext run -s addon",
+    "start:nightly": "web-ext run -s addon --firefox=nightly"
   },
   "repository": "git@github.com:ulises-jeremias/webextension.git",
   "author": "ulises-jeremias <ulisescf.24@gmail.com>",

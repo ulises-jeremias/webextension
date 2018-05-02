@@ -10,35 +10,37 @@ It allows you to find, in [Google Scholar](https://scholar.google.com/), element
 
 ### Clone repository
 
-```bash
+```shell
 $ git clone https://github.com/ulises-jeremias/webextension.git
 ```
 
 or with SSH
 
-```bash
+```shell
 $ git clone git@github.com:ulises-jeremias/webextension.git
 ```
 
 Then, the corresponding dependencies are installed using `npm` by executing the
 following command in the repository directory,
 
-```bash
+```shell
 $ npm run install
+$ npm run prepare-web-ext
 ```
 
 or by using `yarn`,
 
-```bash
+```shell
 $ yarn
+$ yarn prepare-web-ext
 ```
 
 **An example of the commands to execute would be the following,**
 
-```bash
+```shell
 $ git clone https://github.com/ulises-jeremias/webextension.git
 $ cd webextension
-$ yarn
+$ yarn && yarn prepare-web-ext
 ```
 
 ### Load Unpacked Extensions
@@ -64,3 +66,29 @@ After performing the steps described above,
 -   Open `about:debugging`.
 -   Click the `Load Temorary Add-on` button.
 -   Select any of the files where the `manifest.json` it's located.
+
+On the other hand, you can run the following script. This includes the extension in the browser and opens an instance of it to be used.
+
+###### Firefox
+
+```shell
+$ npm run start
+```
+
+or by using `yarn`,
+
+```shell
+$ yarn start
+```
+
+###### Nightly
+
+```shell
+$ npm run start:nightly
+```
+
+or by using `yarn`,
+
+```shell
+$ yarn start:nightly
+```
