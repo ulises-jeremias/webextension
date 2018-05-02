@@ -92,3 +92,12 @@ or by using `yarn`,
 ```shell
 $ yarn start:nightly
 ```
+
+## Source Tree Outline
+
+-   add-on/
+    -   The add-on source code. In a separate directory so that the web-ext tool will only ship files in that directory.
+-   docs/
+    -   Useful documents!
+-   test/
+    -   Tests for the add-on including unit and functional tests.
