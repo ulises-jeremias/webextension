@@ -1,53 +1,55 @@
 # webextension
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-
 ## Introduction
 
-Web extension developed as training for research project in web augmentation.
+Web extension developed as training proposed by [LIFIA](http://www.lifia.info.unlp.edu.ar) for research project in web increase.
+
+It allows you to find, in [Google Scholar](https://scholar.google.com/), elements related to the longest word found from collecting the text of the `<h1>` elements of the current page. They are arranged in a floating panel and remove it at the end of your search.
 
 ## Using the extension
 
 ### Clone repository
 
-```bash
+```shell
 $ git clone https://github.com/ulises-jeremias/webextension.git
 ```
 
 or with SSH
 
-```bash
+```shell
 $ git clone git@github.com:ulises-jeremias/webextension.git
 ```
 
 Then, the corresponding dependencies are installed using `npm` by executing the
 following command in the repository directory,
 
-```bash
+```shell
 $ npm run install
+$ npm run prepare-web-ext
 ```
 
 or by using `yarn`,
 
-```bash
+```shell
 $ yarn
+$ yarn prepare-web-ext
 ```
 
 **An example of the commands to execute would be the following,**
 
-```bash
+```shell
 $ git clone https://github.com/ulises-jeremias/webextension.git
 $ cd webextension
-$ yarn
+$ yarn && yarn prepare-web-ext
 ```
 
 ### Load Unpacked Extensions
 
-#### Chrome
-
 After performing the steps described above,
 
--   Go to Google Chrome, Navigate to `Settings –> Extensions`.
+#### Google Chrome _(or Chromium)_
+
+-   Go to Google Chrome, Navigate to `Settings –> Extensions`, or open `chrome://extensions`
 -   Here Look for the Option `Developer Mode` and **enable** it
 -   Once you’ve enabled the Developer Mode option it will modify the extensions
     tab and  it will reveal `Load Unpacked Extension` option.
@@ -58,3 +60,48 @@ After performing the steps described above,
 -   That’s it the `webextension` will now be added to Google Chrome.
     Now scroll down in the `Extensions` tab present inside Chrome Settings.
 -   Now simply click on the `Launch` option highlighted to launch the extension.
+
+#### Mozilla Firefox _(or Firefox Nightly)_
+
+-   Open `about:debugging`.
+-   Click the `Load Temorary Add-on` button.
+-   Select any of the files where the `manifest.json` it's located.
+
+On the other hand, you can run the following script. This includes the extension in the browser and opens an instance of it to be used.
+
+###### Firefox
+
+```shell
+$ npm run start
+```
+
+or by using `yarn`,
+
+```shell
+$ yarn start
+```
+
+###### Nightly
+
+```shell
+$ npm run start:nightly
+```
+
+or by using `yarn`,
+
+```shell
+$ yarn start:nightly
+```
+
+### Test the extension
+
+To test the operation of the extension, once loaded you can go to a wikipedia article (e.g [C mathematical functions](https://en.wikipedia.org/wiki/C_mathematical_functions)) and press the icon of the loaded extension. By doing this, a floating panel, draggable and resizable, with the contents of the search will be displayed.
+
+## Source Tree Outline
+
+-   addon/
+    -   The add-on source code. In a separate directory so that the web-ext tool will only ship files in that directory.
+-   docs/
+    -   Useful documents!
+-   test/
+    -   Tests for the add-on including unit and functional tests.
