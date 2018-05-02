@@ -8,16 +8,6 @@ const backgroundManager = new BackgroundManager({
   initialState: 'stopped'
 });
 
-browser.browserAction.onClicked.addListener(async tab => {
-  return await backgroundManager.sendMessage(tab)
-    .catch(error => {
-      Promise.reject(new Error(`NetworkError: ${error.message}`));
-    });
-});
+browser.browserAction.onClicked.addListener(backgroundManager.getClickedEventHandler());
 
-browser.runtime.onMessage.addListener(async message => {
-  return await backgroundManager.handleMessage(message)
-    .catch(error => {
-      Promise.reject(new Error(`NetworkError: ${error.message}`));
-    });
-});
+browser.runtime.onMessage.addListener(backgroundManager.getMessageHandler());

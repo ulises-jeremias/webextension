@@ -71,12 +71,26 @@ class BackgroundManager {
     };
   }
 
-  sendMessage(tab) {
-    return this._currentState.sendMessage.bind(this)(tab);
+  getClickedEventHandler() {
+    const self = this;
+
+    return async tab => {
+      return await self._currentState.sendMessage.bind(self)(tab)
+        .catch(error => {
+          Promise.reject(new Error(`NetworkError: ${error.message}`));
+        });
+    };
   }
 
-  handleMessage({wordToFetch}) {
-    return this._currentState.handleMessage.bind(this)({wordToFetch});
+  getMessageHandler() {
+    const self = this;
+
+    return async message => {
+      return await self._currentState.handleMessage.bind(self)(message)
+        .catch(error => {
+          Promise.reject(new Error(`NetworkError: ${error.message}`));
+        });
+    };
   }
 
   refresh() {
