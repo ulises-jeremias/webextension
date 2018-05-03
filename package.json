@@ -4,21 +4,45 @@
   "description": "Web extension developed as training",
   "main": "index.js",
   "scripts": {
-    "test": "karma start",
+    "bundle": "web-ext -s addon -a dist build --overwrite-dest",
+    "test": "npm-run-all test:*",
     "test:debug": "karma start --no-single-run --auto-watch",
     "prepare-web-ext": "pushd addon && yarn && popd",
-    "start": "web-ext run -s addon",
-    "start:nightly": "web-ext run -s addon --firefox=nightly"
+    "firefox": "web-ext run -s addon",
+    "nightly": "web-ext run -s addon --firefox=nightly",
+    "lint": "npm-run-all lint:*",
+    "lint:eslint": "eslint --ext=.js,.json .",
+    "lint:webext": "web-ext -s addon lint",
+    "test:lint": "npm run lint",
+    "test:karma": "NODE_ENV=test karma start"
   },
   "repository": "git@github.com:ulises-jeremias/webextension.git",
   "author": "ulises-jeremias <ulisescf.24@gmail.com>",
   "license": "MIT",
+  "permissions": {
+    "multiprocess": true
+  },
   "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-mocha": "^0.4.0",
+    "eslint-plugin-import": "^2.11.0",
+    "eslint-plugin-json": "^1.2.0",
+    "eslint-plugin-mocha": "^5.0.0",
+    "eslint-plugin-promise": "^3.7.0",
     "expect.js": "^0.3.1",
     "karma": "^2.0.2",
     "karma-chrome-launcher": "^2.2.0",
+    "karma-coverage": "^1.1.1",
+    "karma-coveralls": "^1.2.1",
     "karma-firefox-launcher": "^1.1.0",
+    "karma-mocha": "^1.3.0",
+    "karma-mocha-reporter": "^2.2.5",
     "mocha": "^5.1.1",
-    "web-ext": "^2.6.0"
-  }
+    "npm-run-all": "^4.1.2",
+    "sinon": "^5.0.3",
+    "sinon-chrome": "^2.3.1",
+    "web-ext": "^2.6.0",
+    "webextension-polyfill": "^0.2.1"
+  },
+  "dependencies": {}
 }
