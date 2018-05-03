@@ -1,18 +1,16 @@
+"use strict"
+
 /**
  * @fileoverview The BackgroundManager class is defined
  * @author Ulises Jeremias Cornejo Fandos <ulisescf.24@gmail.com>
  *
  */
-
-"use strict"
-
 /**
  * This is the main class of the extension. In it, the behavior is defined
  * for each state of the extension.
  *
  */
 class BackgroundManager {
-
   /**
    * @constructor
    *

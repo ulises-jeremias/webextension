@@ -17,7 +17,7 @@ class WordFetcher {
    *
    * @return {WordFetcher}
    */
-  constructor({ base = "", path = "/", paramName = "param" }) {
+  constructor({base = "", path = "/", paramName = "param"}) {
     this.base = base;
     this.path = path;
     this.paramName = paramName;

@@ -6,7 +6,7 @@
     "48": "resources/assets/icons/gscholar-48.png"
   },
   "permissions": [
-    "<all_urls>", "activeTab", "contextMenus", "debugger", "webRequest", "webRequestBlocking"
+    "<all_urls>", "activeTab", "contextMenus", "webRequest", "webRequestBlocking"
   ],
   "content_scripts": [{
     "matches": ["<all_urls>"],
